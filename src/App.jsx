@@ -9,9 +9,8 @@ export default function App() {
   const maxCount = 10;
 
   // Effect
-  // Mengubah judul tab browser setiap kali nilai 'count' berubah
   useEffect(() => {
-    document.title = `Angka saat ini: ${count}`;
+    document.title = `Angka sekarang: ${count}`;
   }, [count]);
 
   // EVENT HANDLING
