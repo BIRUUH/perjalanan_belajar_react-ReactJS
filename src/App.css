@@ -1,0 +1,13 @@
+.button {
+    margin: 5px;
+    padding: 8px 16px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.hr {
+    margin: 20px 0;
+}
