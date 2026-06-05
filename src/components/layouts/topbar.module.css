@@ -1,0 +1,28 @@
+.topbar {
+  height: var(--topbar-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: var(--clr-bg1);
+  border-bottom: 1px solid var(--clr-border);
+  flex-shrink: 0;
+  gap: 16px;
+}
+
+.kiri {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.judulHalaman {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.tanggal  {
+    font-size:12px;
+    color: #ffffff;
+}
