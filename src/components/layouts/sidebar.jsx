@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import styles from "./sidebar.module.css";
 
 const navItems = [
@@ -10,11 +9,11 @@ const navItems = [
 
 export default function Sidebar({ halamanAktif, onNavigasi }) {
   return (
-    <aside className={[styles.sidebar]}>
+    <aside className={styles.sidebar}>
       <div className={styles.merk}>
         <div className={styles.logo}>W</div>
         <div>
-          <span className={styles.namaMerk}>e-Gudang</span>
+          <span className={styles.namaMerk}>E-Gudang</span>
         </div>
       </div>
 
@@ -31,7 +30,6 @@ export default function Sidebar({ halamanAktif, onNavigasi }) {
             onClick={() => onNavigasi(item.key)}
             title={item.label}
           >
-            {/* <span className={styles.navIcon}>{item.icon}</span> */}
             <span className={styles.navLabel2}>{item.label}</span>
             {halamanAktif === item.key && (
               <span className={styles.navIndicator} />
@@ -39,16 +37,6 @@ export default function Sidebar({ halamanAktif, onNavigasi }) {
           </button>
         ))}
       </nav>
-
-      {/* Bottom */}
-      {/* <div>
-        <button
-          className={styles.collapsedBtn}
-          onClick={() => setCollapsed(!collapsed)}
-        >
-          {collapsed ? ">" : "<"}
-        </button>
-      </div> */}
     </aside>
   );
 }

@@ -11,18 +11,154 @@
 }
 
 .kiri {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
 .judulHalaman {
-    font-size: 20px;
-    font-weight: 700;
-    color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
 }
 
-.tanggal  {
-    font-size:12px;
-    color: #ffffff;
+.tanggal {
+  font-size: 12px;
+}
+
+.kanan {
+  position: relative;
+}
+
+.profileToggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 12px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background 0.2s ease;
+  user-select: none;
+}
+
+.profileToggle:hover {
+  background: #ffffff0d;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8, #3b82f6);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #3b82f640;
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.userName {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.userRole {
+  font-size: 11px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+.chevron {
+  font-size: 10px;
+  color: #a0aec0;
+  transition: transform 0.25s ease;
+  margin-left: 4px;
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+/* Dropdown Menu */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 220px;
+  background: var(--clr-bg1);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius-sm);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+
+.dropdownHeader {
+  padding: 12px 16px;
+}
+
+.dropdownName {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 2px 0;
+}
+
+.dropdownRole {
+  font-size: 11px;
+  color: #a0aec0;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.divider {
+  height: 1px;
+  background: #ffffff14;
+  margin: 8px 0;
+}
+
+.dropdownItem {
+  background: transparent;
+  border: none;
+  width: 100%;
+  padding: 10px 16px;
+  text-align: left;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  outline: none;
+}
+
+.dropdownItem:hover {
+  background: #ffffff0d;
+  color: #ffffff;
+}
+
+.logoutItem {
+  color: #f87171;
+}
+
+.logoutItem:hover {
+  background: #ef444426;
+  color: #fca5a5;
 }
