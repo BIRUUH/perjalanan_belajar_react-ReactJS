@@ -7,10 +7,7 @@ export default function AppLayout() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    let halamanAktif = 'dashboard';
-    if (location.pathname.startsWith('/kategori')) halamanAktif = 'kategori';
-    else if (location.pathname.startsWith('/barang')) halamanAktif = 'barang';
-    else if (location.pathname.startsWith('/laporan')) halamanAktif = 'laporan';
+    const halamanAktif = location.pathname.split('/')[1] || 'dashboard';
 
     const handleNavigasi = (key) => {
         navigate(key === 'dashboard' ? '/' : `/${key}`);
