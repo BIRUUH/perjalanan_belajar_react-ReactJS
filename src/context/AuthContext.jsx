@@ -5,7 +5,7 @@ const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(() => {
-        return localStorage.getItem("isAuthenticated") === "true";
+        return !!localStorage.getItem("token");
     });
 
     const [user, setUser] = useState(() => {
@@ -13,23 +13,27 @@ export const AuthProvider = ({ children }) => {
         return storedUser ? JSON.parse(storedUser) : null;
     });
 
-    // Simulasi login untuk mengetes route protected
-    const login = (username, password) => {
+    const login = async (username, password) => {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
         if (username === "admin" && password === "admin123") {
-            // Set status di localStorage
-            localStorage.setItem("isAuthenticated", "true");
-            localStorage.setItem("user", JSON.stringify({ username: "Admin Gudang", role: "Administrator" }));
+            // Simpan dummy token di localStorage
+            const dummyToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluaXN0cmF0b3IifQ.signature";
+            localStorage.setItem("token", dummyToken);
+            
+            const userData = { username: "Admin Gudang", role: "Administrator" };
+            localStorage.setItem("user", JSON.stringify(userData));
             
             // Update state
             setIsAuthenticated(true);
-            setUser({ username: "Master Admin", role: "Administrator" });
+            setUser(userData);
             return true;
         }
         return false;
     };
 
     const logout = () => {
-        localStorage.removeItem("isAuthenticated");
+        localStorage.removeItem("token");
         localStorage.removeItem("user");
         
         setIsAuthenticated(false);

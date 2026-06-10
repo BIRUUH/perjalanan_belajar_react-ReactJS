@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
@@ -11,6 +12,7 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
 
     const targetRedirect = location.state?.from?.pathname || "/";
 
@@ -20,22 +22,35 @@ export default function Login() {
         }
     }, [isAuthenticated, navigate, targetRedirect]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
-
-        // Validasi sederhana
-        if (!username || !password) {
+        
+        // Form Validasi
+        if (!username.trim() || !password.trim()) {
             setError("Username dan Password wajib diisi!");
             return;
         }
 
-        const success = login(username, password);
-        if (success) {
-            // Jika sukses, navigasi ke url asal dengan opsi { replace: true } 
-            navigate(targetRedirect, { replace: true });
-        } else {
-            setError("Username atau password salah! Silakan coba lagi.");
+        if (password.length < 6) {
+            setError('Password minimal 6 karakter!');
+            return;
+        }
+
+        // Error Handling
+        try {
+            setIsLoading(true);
+            const success = await login(username, password);
+            if (success) {
+                // Jika sukses, navigasi ke url asal dengan opsi { replace: true } 
+                navigate(targetRedirect, { replace: true });
+            } else {
+                setError("Username atau password salah! Silakan coba lagi.");
+            }
+        } catch (err) {
+            setError("Terjadi masalah jaringan. Silakan coba beberapa saat lagi.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -48,7 +63,9 @@ export default function Login() {
                     <p className={styles.subtitle}>Sistem Informasi Inventaris</p>
                 </div>
 
+                {/* Form handling */}
                 <form onSubmit={handleSubmit} className={styles.form}>
+                    {/* Error Alert dari error handling */}
                     {error && (
                         <div className={styles.errorAlert}>
                             {error}
@@ -64,6 +81,7 @@ export default function Login() {
                             placeholder="Masukkan username Anda"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
+                            disabled={isLoading}
                         />
                     </div>
 
@@ -76,11 +94,12 @@ export default function Login() {
                             placeholder="Masukkan password Anda"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            disabled={isLoading}
                         />
                     </div>
 
-                    <button type="submit" className={styles.button}>
-                        Masuk
+                    <button type="submit" className={styles.button} disabled={isLoading}>
+                        {isLoading ? "Memproses..." : "Masuk"}
                     </button>
                 </form>
             </div>

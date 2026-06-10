@@ -25,7 +25,7 @@ export default function AppRoutes() {
             {/* Route Login */}
             <Route path="/login" element={<Login />} />
 
-            {/* Nested Route yang dilindungi ProtectedRoute */}
+            {/* Nested Route */}
             <Route
                 // Protected Route
                 path="/"
